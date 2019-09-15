@@ -1,0 +1,50 @@
+<header>
+  <a href="/">Blog</a>
+  <ul class="c">
+    <li class="a4">
+      <%= link_to "SignOut", destroy_user_session_path, method: :delete, class: 'a3' %>
+    </li>
+    <% if user_signed_in? %>
+    <li class="a3">
+      <%= link_to "Signin", new_user_session_path, class: 'a3' %>
+    </li>
+    <li class="a3">
+      <%= link_to "Signup", new_user_registration_path, class: 'a3' %>
+    </li>
+    <% end %>
+  </ul>
+</header>
+<footer>
+  <p class="u">
+    <%= "#{@nickname}さんの投稿一覧" %>
+  </p>
+  <% @posts.each do |post| %>
+  <div class="contents">
+    <p class="h"><%= post.title %></p>
+    <%# <h3 class="title"> %>
+    <%# <% @posts.each do |post| %>
+    <div class="j">
+      <%= post.content %>
+    </div>
+    <ul class="d">
+      <li class="b">
+        <%= link_to "Show", user_path(post.user_id), class: 'b' %>
+      </li>
+      <li class="b">
+        <%= link_to 'Edit', "/posts/#{post.id}/edit", method: :get %>
+      </li>
+      <li class="b">
+        <%= link_to "Delete", "/posts/#{post.id}", class: 'b', method: :delete %>
+      <li>
+    </ul>
+    <% end %>
+  </div>
+  <%= paginate(@posts) %>
+  <% if user_signed_in? %>
+  <div class="tt">
+    <%= link_to "新規投稿", new_post_path, method: :get %>
+  </div>
+  <% end %>
+</footer>
+
+

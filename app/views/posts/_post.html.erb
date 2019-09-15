@@ -1,0 +1,22 @@
+<% @posts.each do |post| %>
+<div class="contents">
+  <p class="h"><%= post.title %></p>
+  <div class="j">
+    <%= post.content %>
+  </div>
+  <ul class="d">
+    <%# <li class="b">
+      <%= link_to "詳細", tweet_path(tweet.id), method: :get %>
+      <%= link_to "Show", user_path(post.user_id), class: 'b' %>
+    </li>
+    <% if user_signed_in? && current_user.id == post.user_id %>
+    <li class="b">
+      <%= link_to 'Edit', "/posts/#{post.id}/edit", method: :get %>
+    </li>
+    <li class="b">
+      <%= link_to "Delete", "/posts/#{post.id}", class: 'b', method: :delete %>
+    <li>
+    <% end %>
+  </ul>
+</div>
+<% end %>

@@ -1,0 +1,26 @@
+<header>
+  <a href="/">Blog</a>
+  <ul class="c">
+    <% if user_signed_in? %>
+    <li class="a4">
+      <%= link_to "SignOut", destroy_user_session_path, method: :delete, class: 'a3' %>
+    </li>
+    <% end %>
+    <li class="a3">
+      <%= link_to "Signin", new_user_session_path, class: 'a3' %>
+    </li>
+    <li class="a3">
+      <%= link_to "Signup", new_user_registration_path, class: 'a3' %>
+    </li>
+  </ul>
+</header>
+
+<footer>
+<%= render 'post'%>
+<%= paginate(@posts) %>
+<% if user_signed_in? %>
+<div class="tt">
+  <%= link_to "新規投稿", new_post_path, method: :get %>
+</div>
+<% end %>
+</footer>

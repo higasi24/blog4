@@ -1,0 +1,32 @@
+<header>
+  <a href="/">Blog</a>
+  <ul class="c">
+    <% if user_signed_in? %>
+    <li class="a4">
+      <%= link_to "SignOut", destroy_user_session_path, method: :delete, class: 'a3' %>
+    </li>
+    <% end %>
+    <li class="a3">
+      <%= link_to "Signin", new_user_session_path, class: 'a3' %>
+    </li>
+    <li class="a3">
+      <%= link_to "Signup", new_user_registration_path, class: 'a3' %>
+    </li>
+  </ul>
+</header>
+
+<footer>
+  <div class="main">
+    <div class="main-content">
+    <%= form_for @posts do |f| %>
+      <h7 class="new">本文</h7>
+      <%= f.text_field :title, placeholder: 'タイトル', class: "new-title" %>
+      <%# <%= form_for @post do |f| %>
+      <%# <%= f.text_field :title, placeholder: 'タイトル', class: "title" %>
+      <div class="main-form">
+        <%= f.text_area :content, class: "new-content" %>
+      </div>
+      <%= f.submit "送信", class: "submit-btn" %>
+    <% end %>
+  </div>
+</footer>

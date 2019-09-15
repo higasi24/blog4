@@ -1,0 +1,8 @@
+@import "example";
+@import "new";
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+}
