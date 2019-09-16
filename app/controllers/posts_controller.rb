@@ -11,8 +11,13 @@ class PostsController < ApplicationController
   end
 
   def create
-    Post.create(title: post_params[:title], content: post_params[:content], user_id: current_user.id)
-    redirect_to root_path
+
+
+    @post = Post.create(title: post_params[:title], content: post_params[:content], user_id: current_user.id)
+    respond_to do |format|
+      format.html {redirect_to root_path}
+      format.json
+    end
   end
 
   def update
@@ -36,8 +41,4 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :content)
   end
-
-  # def move_to_index
-  #   redirect_to action: :index unless user_signed_in?
-  # end
 end
